@@ -1,0 +1,27 @@
+---
+import { menuOptions } from "../utils/menuOptions"
+---
+
+<header class="w-full py-4 lg:py-6 border-b-4 border-border">
+  <div class="flex items-center container mx-auto justify-between px-4">
+    <div>
+      <h1 class="font-global font-bold uppercase -tracking-tight text-lg sm:text-2xl">Adrian Rangel</h1>
+    </div>
+    <div class="flex items-center gap-x-4 sm:gap-x-8">
+      <nav class="hidden md:block">
+        <ul class="flex items-center gap-x-4 lg:gap-x-8">
+        {menuOptions.map((option) => (
+          <li>
+            <a href={option.href} class="font-global font-medium uppercase -tracking-tight text-sm lg:text-lg hover:text-accent transition-colors duration-200">
+              {option.name}
+            </a>
+          </li>
+        ))}
+        </ul>
+      </nav>
+      <button class="font-global font-medium uppercase -tracking-tight text-sm sm:text-lg hover:text-primary hover:scale-105 hover:bg-transparent transition-all cursor-pointer duration-200 bg-accent px-3 py-1.5 sm:px-4 sm:py-2 rounded-md text-white border-border border-3">
+        Download CV
+      </button>
+    </div>
+  </div>
+</header>

@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
 @theme {
+
+	--font-global: "Space Mono", monospace;
+
 	--color-background: oklch(0.98 0 0);
 	--color-foreground: oklch(0.1 0 0);
 	--color-card: oklch(1 0 0);
