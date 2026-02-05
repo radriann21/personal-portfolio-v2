@@ -1,0 +1,24 @@
+---
+import ProfessionalCard from './ProfessionalCard.astro'
+import { professionalExperience } from '../../utils/professionalExperience'
+---
+
+<section class="w-full py-12 px-16 border-b-4 border-border">
+  <div class="flex flex-col space-y-9">
+    <h2 class="font-bold text-4xl uppercase -tracking-wider">Professional Experience</h2>
+    <div class="flex flex-col gap-6">
+      {professionalExperience.map((experience) => (
+        <ProfessionalCard
+          title={experience.title}
+          company={experience.company}
+          location={experience.location}
+          description={experience.description}
+          techs={experience.techs}
+          startDate={experience.startDate}
+          endDate={experience.endDate}
+          duration={experience.duration}
+        />
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string
+  company: string
+  location: string
+  description: string
+  techs: string[]
+  startDate: string
+  endDate: string
+  duration: string
+}
+
+const { title, company, location, description, techs, startDate, endDate, duration } = Astro.props
+---
+
+<article class="w-full bg-accent border-4 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all duration-200 flex flex-col gap-4">
+  <div class="flex items-start justify-between">
+    <div class="flex flex-col gap-1">
+      <h3 class="text-2xl font-bold text-white -tracking-tight">{title}</h3>
+      <p class="text-white/90 font-medium">{company} - {location}</p>
+    </div>
+    <span class="text-white font-bold text-sm uppercase whitespace-nowrap">{startDate} - {endDate}</span>
+  </div>
+
+  <p class="text-white/95 leading-relaxed text-base">
+    {description}
+  </p>
+
+  <div class="flex flex-wrap gap-2 mt-2">
+    {techs.map((tech) => (
+      <span class="px-4 py-1.5 bg-white text-accent text-xs font-bold uppercase rounded-md border-2 border-black">
+        {tech}
+      </span>
+    ))}
+  </div>
+</article>
