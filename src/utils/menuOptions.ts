@@ -9,7 +9,7 @@ export const menuOptions = [
   },
   {
     name: "Projects",
-    href: "/projects"
+    href: "#projects"
   },
   {
     name: "Contact",
