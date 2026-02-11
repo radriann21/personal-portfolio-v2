@@ -13,6 +13,6 @@ export const menuOptions = [
   },
   {
     name: "Contact",
-    href: "/contact"
+    href: "#contact"
   }
 ]
