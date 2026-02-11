@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@fontsource/space-mono": "^5.2.9",
+    "@lucide/astro": "^0.563.0",
     "@tailwindcss/vite": "^4.1.18",
     "animejs": "^4.3.5",
     "astro": "^5.17.1",
