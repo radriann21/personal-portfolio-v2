@@ -1,0 +1,157 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { ArrowLeft, Code, ExternalLink } from '@lucide/astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project: CollectionEntry<'projects'>) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+type Props = {
+  project: CollectionEntry<'projects'>;
+};
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+---
+
+<Layout>
+  <article class="w-full min-h-screen">
+    <section class="w-full py-12 px-16 bg-green border-b-4 border-black">
+      <div class="flex flex-col gap-6">
+        <a
+          href="/#projects"
+          class="flex items-center gap-2 text-black font-medium hover:text-black/70 transition-colors w-fit"
+        >
+          <ArrowLeft size={20} />
+          Back to Projects
+        </a>
+        
+        <div class="flex flex-col gap-4">
+          <h1 class="text-5xl md:text-6xl font-bold text-black -tracking-tight">
+            {project.data.title}
+          </h1>
+          <p class="text-xl text-black/80 max-w-3xl">
+            {project.data.description}
+          </p>
+          
+          <div class="flex flex-wrap gap-3 mt-4">
+            {project.data.tags.map((tag: string) => (
+              <span class="px-4 py-2 bg-black text-white text-sm font-bold uppercase rounded-md border-2 border-black">
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <div class="flex gap-4 mt-4">
+            {project.data.codeUrl && (
+              <a
+                href={project.data.codeUrl}
+                target="_blank"
+                class="font-global font-medium uppercase -tracking-tight text-sm px-6 py-3 bg-blue text-white border-[3px] border-black cursor-pointer shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] active:translate-x-0 active:translate-y-0 active:shadow-none flex items-center gap-x-2"
+              >
+                <Code size={18} />
+                View Code
+              </a>
+            )}
+            {project.data.liveUrl && (
+              <a
+                href={project.data.liveUrl}
+                target="_blank"
+                class="font-global font-medium uppercase -tracking-tight text-sm px-6 py-3 bg-pink text-white border-[3px] border-black cursor-pointer shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] active:translate-x-0 active:translate-y-0 active:shadow-none flex items-center gap-x-2"
+              >
+                <ExternalLink size={18} />
+                Live Demo
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="w-full py-12 px-16 bg-white border-b-4 border-black">
+      <div class="w-full max-w-4xl mx-auto">
+        <img
+          src={project.data.image}
+          alt={project.data.title}
+          class="w-full h-auto border-4 border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)]"
+        />
+      </div>
+    </section>
+
+    <section class="w-full py-12 px-16 bg-orange">
+      <div class="w-full max-w-4xl mx-auto">
+        <div class="prose prose-lg max-w-none bg-white border-4 border-black p-8 md:p-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+          <Content />
+        </div>
+      </div>
+    </section>
+  </article>
+</Layout>
+
+<style>
+  .prose {
+    color: #000;
+  }
+  
+  .prose h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+  }
+  
+  .prose h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: #000;
+  }
+  
+  .prose p {
+    margin-bottom: 1rem;
+    line-height: 1.75;
+    color: rgba(0, 0, 0, 0.9);
+  }
+  
+  .prose ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 1rem 0;
+  }
+  
+  .prose ul li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .prose ul li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: #E63946;
+    font-weight: bold;
+  }
+  
+  .prose strong {
+    font-weight: 700;
+    color: #000;
+  }
+  
+  .prose code {
+    background: #F1FAEE;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+    border: 2px solid #000;
+  }
+</style>

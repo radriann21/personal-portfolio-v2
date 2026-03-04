@@ -1,22 +1,27 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
 
 	--font-global: "Space Mono", monospace;
 
-	--color-background: oklch(0.98 0 0);
-	--color-foreground: oklch(0.1 0 0);
-	--color-card: oklch(1 0 0);
-	--color-card-foreground: oklch(0.1 0 0);
-	--color-primary: oklch(0.1 0 0);
-	--color-primary-foreground: oklch(1 0 0);
-	--color-secondary: oklch(0.4 0.15 280);
-	--color-secondary-foreground: oklch(1 0 0);
-	--color-muted: oklch(0.9 0 0);
-	--color-muted-foreground: oklch(0.4 0 0);
-	--color-accent: oklch(0.65 0.25 25);
-	--color-accent-foreground: oklch(1 0 0);
-	--color-destructive: oklch(0.5 0.2 25);
-	--color-border: oklch(0.1 0 0);
-	--color-input: oklch(0.95 0 0);
+	--color-background: #FFF5F5;
+	--color-foreground: #000000;
+	--color-card: #FFFFFF;
+	--color-card-foreground: #000000;
+	--color-primary: #000000;
+	--color-primary-foreground: #FFFFFF;
+	--color-secondary: #6B9AFF;
+	--color-secondary-foreground: #000000;
+	--color-muted: #F1FAEE;
+	--color-muted-foreground: #000000;
+	--color-accent: #E63946;
+	--color-accent-foreground: #FFFFFF;
+	--color-destructive: #E63946;
+	--color-border: #000000;
+	--color-input: #F1FAEE;
+	--color-green: #00FF85;
+	--color-blue: #6B9AFF;
+	--color-orange: #FF9F66;
+	--color-pink: #FF6B9D;
 }
