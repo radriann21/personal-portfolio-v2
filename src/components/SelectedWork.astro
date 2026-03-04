@@ -1,24 +1,32 @@
 ---
+import { getCollection } from 'astro:content';
 import ProjectCard from "./ProjectCard.astro";
+
+const projects = await getCollection('projects');
+const featuredProjects = projects.filter(p => p.data.featured).slice(0, 4);
 ---
 
-<section class="w-full py-12 px-16 border-b-4 border-border">
+<section class="w-full py-12 px-16 border-b-4 border-border bg-pink">
   <div class="flex flex-col space-y-9">
     <div class="w-full flex items-center justify-between">
-      <h3 class="font-bold text-4xl uppercase -tracking-wider" id="projects">
+      <h3 class="font-bold text-4xl uppercase -tracking-wider text-black" id="projects">
         Selected Work
       </h3>
-      <button
-        class="font-global font-medium uppercase -tracking-tight text-sm sm:text-lg px-3 py-1.5 sm:px-4 sm:py-2 bg-accent text-white border-[3px] border-black cursor-pointer shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] active:translate-x-0 active:translate-y-0 active:shadow-none"
-      >
-        See All
-      </button>
     </div>
     <div class="grid grid-cols-2 gap-4">
-      <ProjectCard />
-      <ProjectCard />
-      <ProjectCard />
-      <ProjectCard />
+      {featuredProjects.map((project) => (
+        <ProjectCard
+          slug={project.slug}
+          title={project.data.title}
+          description={project.data.description}
+          image={project.data.image}
+          tags={project.data.tags}
+          project={{
+            codeUrl: project.data.codeUrl,
+            liveUrl: project.data.liveUrl,
+          }}
+        />
+      ))}
     </div>
   </div>
 </section>

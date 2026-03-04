@@ -2,6 +2,7 @@
 import { Code, Link } from "@lucide/astro"
 
 interface Props {
+  slug?: string;
   title?: string;
   description?: string;
   image?: string;
@@ -13,6 +14,7 @@ interface Props {
 }
 
 const {
+  slug = "real-estate-platform",
   title = "Real Estate Platform",
   description = "Full-stack property listing platform with advanced filtering and virtual tours",
   image = "https://placehold.co/600x400/ff7b9d/ff7b9d",
@@ -24,8 +26,9 @@ const {
 } = Astro.props;
 ---
 
-<article
-  class="w-full flex flex-col bg-white border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1"
+<a
+  href={`/projects/${slug}`}
+  class="w-full flex flex-col bg-white border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 cursor-pointer"
 >
   <div class="w-full h-[200px] border-b-4 border-black overflow-hidden">
     <img src={image} alt={title} class="w-full h-full object-cover" />
@@ -33,32 +36,14 @@ const {
   <section class="w-full p-4 flex flex-col gap-3">
     <h4 class="font-bold text-xl text-gray-800 -tracking-wider">{title}</h4>
     <p class="text-sm text-gray-500 leading-relaxed -tracking-tighter">{description}</p>
-    <div class="w-full my-2 flex gap-x-8 items-center">
-      <a
-        href={project?.codeUrl}
-        target="_blank"
-        class="font-global font-medium uppercase -tracking-tight text-sm px-3 py-1.5 bg-accent text-white border-[3px] border-black cursor-pointer shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] active:translate-x-0 active:translate-y-0 active:shadow-none flex items-center gap-x-2"
-      >
-        <Code size={16} />
-        Code
-      </a>
-      <a
-        href={project?.liveUrl}
-        target="_blank"
-        class="font-global font-medium uppercase -tracking-tight text-sm px-3 py-1.5 bg-accent text-white border-[3px] border-black cursor-pointer shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] active:translate-x-0 active:translate-y-0 active:shadow-none flex items-center gap-x-2"
-      >
-        <Link size={16} />
-        Live
-      </a>
-    </div>
     <div class="flex flex-wrap gap-2 mt-2">
       {
         tags.map((tag) => (
-          <span class="px-4 py-1.5 bg-accent text-white text-xs font-semibold rounded-full border-2 border-black">
+          <span class="px-4 py-1.5 bg-black text-white text-xs font-semibold rounded-full border-2 border-black">
             {tag}
           </span>
         ))
       }
     </div>
   </section>
-</article>
+</a>
