@@ -2,17 +2,15 @@
 import { menuOptions } from "../utils/menuOptions";
 ---
 
-<header id="header" class="w-full py-4 lg:py-6 border-b-4 border-border">
+<header id="header" class="w-full py-4 lg:py-6 border-b-4 border-border" role="banner">
   <div class="flex items-center container mx-auto justify-between px-4">
     <div>
-      <h1
-        class="font-global font-bold uppercase -tracking-tight text-lg sm:text-2xl"
-      >
+      <a href="/" class="font-global font-bold uppercase -tracking-tight text-lg sm:text-2xl hover:text-accent transition-colors" aria-label="Adrian Rangel - Home">
         Adrian Rangel
-      </h1>
+      </a>
     </div>
     <div class="flex items-center gap-x-4 sm:gap-x-8">
-      <nav class="hidden md:block">
+      <nav class="hidden md:block" aria-label="Main navigation">
         <ul class="flex items-center gap-x-4 lg:gap-x-8">
           {
             menuOptions.map((option) => (
@@ -20,6 +18,7 @@ import { menuOptions } from "../utils/menuOptions";
                 <a
                   href={option.href}
                   class="font-global font-medium uppercase -tracking-tight text-sm lg:text-lg hover:text-accent transition-colors duration-100"
+                  aria-label={`Navigate to ${option.name}`}
                 >
                   {option.name}
                 </a>
@@ -28,11 +27,14 @@ import { menuOptions } from "../utils/menuOptions";
           }
         </ul>
       </nav>
-      <button
+      <a
+        href="/cv.pdf"
+        download
         class="font-global font-medium uppercase -tracking-tight text-sm sm:text-lg px-3 py-1.5 sm:px-4 sm:py-2 bg-pink text-white border-[3px] border-black cursor-pointer shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] active:translate-x-0 active:translate-y-0 active:shadow-none"
+        aria-label="Download CV (PDF)"
       >
         Download CV
-      </button>
+      </a>
     </div>
   </div>
 </header>

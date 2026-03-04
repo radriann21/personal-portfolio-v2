@@ -4,7 +4,7 @@
 
     <div class="grid grid-cols-2 gap-6">
       <div
-        class="bg-green border-4 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col gap-4"
+        class="contact-card bg-green border-4 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col gap-4"
       >
         <h4 class="text-2xl uppercase font-bold -tracking-tight text-black">
           Get in touch
@@ -33,7 +33,7 @@
       </div>
 
       <div
-        class="bg-pink border-4 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col gap-4"
+        class="contact-card bg-pink border-4 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col gap-4"
       >
         <h4 class="text-2xl uppercase font-bold -tracking-tight text-black">
           Links
@@ -132,3 +132,30 @@
     </div>
   </div>
 </section>
+
+<script>
+  import { animate, stagger } from 'animejs';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const contactCards = document.querySelectorAll('.contact-card');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animate(contactCards, {
+            scale: [0.9, 1],
+            opacity: [0, 1],
+            duration: 800,
+            delay: stagger(200),
+            easing: 'out-back'
+          });
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.2 });
+
+    if (contactCards.length > 0) {
+      observer.observe(contactCards[0]);
+    }
+  });
+</script>
