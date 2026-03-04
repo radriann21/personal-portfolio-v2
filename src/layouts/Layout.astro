@@ -6,21 +6,105 @@ import "../styles/global.css"
 
 import Header from "../components/Header.astro"
 import Footer from "../components/Footer.astro"
+
+interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+	type?: string;
+}
+
+const {
+	title = "Adrian Rangel - Full Stack Web Developer",
+	description = "Full-stack web developer with 2+ years of experience building scalable applications. Specializing in React, Next.js, TypeScript, Node.js, and modern web technologies.",
+	image = "/og-image.jpg",
+	type = "website"
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const socialImage = new URL(image, Astro.site);
 ---
 
 <!doctype html>
 <html lang="en" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		<!-- Primary Meta Tags -->
+		<title>{title}</title>
+		<meta name="title" content={title} />
+		<meta name="description" content={description} />
+		<meta name="author" content="Adrian Rangel" />
+		<meta name="keywords" content="web developer, full stack developer, react, nextjs, typescript, nodejs, portfolio" />
+		<link rel="canonical" href={canonicalURL} />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content={type} />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={socialImage} />
+		<meta property="og:site_name" content="Adrian Rangel Portfolio" />
+		<meta property="og:locale" content="en_US" />
+		
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content={canonicalURL} />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={socialImage} />
+		<meta name="twitter:creator" content="@radriann21" />
+		
+		<!-- Favicon -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		
+		<!-- Theme Color -->
+		<meta name="theme-color" content="#00FF85" />
+		<meta name="color-scheme" content="light" />
+		
+		<!-- Generator -->
 		<meta name="generator" content={Astro.generator} />
-		<title>Adrian Rangel</title>
+		
+		<!-- Robots -->
+		<meta name="robots" content="index, follow" />
+		<meta name="googlebot" content="index, follow" />
+		
+		<!-- Schema.org JSON-LD -->
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "Person",
+			"name": "Adrian Rangel",
+			"url": Astro.site,
+			"image": socialImage,
+			"jobTitle": "Full Stack Web Developer",
+			"description": description,
+			"sameAs": [
+				"https://github.com/radriann21",
+				"https://www.linkedin.com/in/radrian21",
+				"https://instagram.com/radriann21"
+			],
+			"knowsAbout": [
+				"Web Development",
+				"React",
+				"Next.js",
+				"TypeScript",
+				"Node.js",
+				"PostgreSQL",
+				"Full Stack Development"
+			]
+		})} />
 	</head>
 	<body class="w-full min-h-screen font-global">
+		<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue focus:text-white focus:border-2 focus:border-black">
+			Skip to main content
+		</a>
 		<Header />
-		<slot />
+		<main id="main-content">
+			<slot />
+		</main>
 		<Footer />
 	</body>
 </html>

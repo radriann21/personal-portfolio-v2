@@ -17,10 +17,31 @@ type Props = {
 
 const { project } = Astro.props;
 const { Content } = await project.render();
+
+const projectSchema = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": project.data.title,
+  "description": project.data.description,
+  "image": project.data.image,
+  "author": {
+    "@type": "Person",
+    "name": "Adrian Rangel"
+  },
+  "datePublished": project.data.publishDate.toISOString(),
+  "keywords": project.data.tags.join(", "),
+  "url": `https://adrianrangel.dev/projects/${project.slug}`
+};
 ---
 
-<Layout>
-  <article class="w-full min-h-screen">
+<Layout 
+  title={`${project.data.title} - Adrian Rangel`}
+  description={project.data.description}
+  image={project.data.image}
+  type="article"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(projectSchema)} />
+  <article class="w-full min-h-screen" itemscope itemtype="https://schema.org/CreativeWork">
     <section class="w-full py-12 px-16 bg-green border-b-4 border-black">
       <div class="flex flex-col gap-6">
         <a

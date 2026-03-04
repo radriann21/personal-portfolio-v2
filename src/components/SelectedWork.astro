@@ -15,18 +15,49 @@ const featuredProjects = projects.filter(p => p.data.featured).slice(0, 4);
     </div>
     <div class="grid grid-cols-2 gap-4">
       {featuredProjects.map((project) => (
-        <ProjectCard
-          slug={project.slug}
-          title={project.data.title}
-          description={project.data.description}
-          image={project.data.image}
-          tags={project.data.tags}
-          project={{
-            codeUrl: project.data.codeUrl,
-            liveUrl: project.data.liveUrl,
-          }}
-        />
+        <div class="project-card-wrapper">
+          <ProjectCard
+            slug={project.slug}
+            title={project.data.title}
+            description={project.data.description}
+            image={project.data.image}
+            tags={project.data.tags}
+            project={{
+              codeUrl: project.data.codeUrl,
+              liveUrl: project.data.liveUrl,
+            }}
+          />
+        </div>
       ))}
     </div>
   </div>
 </section>
+
+<script>
+  import { animate, stagger } from 'animejs';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const projectCards = document.querySelectorAll('.project-card-wrapper');
+
+    // Crear observer para animar cuando entran en viewport
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const cards = document.querySelectorAll('.project-card-wrapper');
+          animate(cards, {
+            translateY: [60, 0],
+            opacity: [0, 1],
+            duration: 800,
+            delay: stagger(150),
+            easing: 'out-cubic'
+          });
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.1 });
+
+    if (projectCards.length > 0) {
+      observer.observe(projectCards[0]);
+    }
+  });
+</script>
