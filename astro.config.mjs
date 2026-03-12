@@ -8,6 +8,10 @@ export default defineConfig({
     site: 'https://adrianrangel.dev',
     output: 'static',
     compressHTML: true,
+    prefetch: {
+        prefetchAll: true,
+        defaultStrategy: 'hover'
+    },
     integrations: [sitemap()],
     build: {
         inlineStylesheets: 'auto'
