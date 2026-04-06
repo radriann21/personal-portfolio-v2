@@ -13,22 +13,22 @@ interface Props {
 const { title, company, location, description, techs, startDate, endDate, duration } = Astro.props
 ---
 
-<article class="w-full bg-white border-4 border-blue p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all duration-200 flex flex-col gap-4">
-  <div class="flex items-start justify-between">
+<article class="w-full bg-white border-3 sm:border-4 border-blue p-4 sm:p-6 md:p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] sm:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] md:hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all duration-200 flex flex-col gap-3 sm:gap-4">
+  <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
     <div class="flex flex-col gap-1">
-      <h3 class="text-2xl font-bold text-black -tracking-tight">{title}</h3>
-      <p class="text-black/90 font-medium">{company} - {location}</p>
+      <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-black -tracking-tight">{title}</h3>
+      <p class="text-sm sm:text-base text-black/90 font-medium">{company} - {location}</p>
     </div>
-    <span class="text-black font-bold text-sm uppercase whitespace-nowrap">{startDate} - {endDate}</span>
+    <span class="text-black font-bold text-xs sm:text-sm uppercase whitespace-nowrap">{startDate} - {endDate}</span>
   </div>
 
-  <p class="text-black/95 leading-relaxed text-base">
+  <p class="text-black/95 leading-relaxed text-sm sm:text-base">
     {description}
   </p>
 
-  <div class="flex flex-wrap gap-2 mt-2">
+  <div class="flex flex-wrap gap-2 mt-1 sm:mt-2">
     {techs.map((tech) => (
-      <span class="px-4 py-1.5 bg-blue text-white text-xs font-bold uppercase rounded-md border-2 border-black">
+      <span class="px-3 py-1 sm:px-4 sm:py-1.5 bg-blue text-white text-xs font-bold uppercase rounded-md border-2 border-black">
         {tech}
       </span>
     ))}
