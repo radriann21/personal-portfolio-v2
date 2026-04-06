@@ -1,16 +1,58 @@
 <section class="w-full py-12 px-16 bg-blue">
-  <div class="w-full bg-pink border-4 border-black p-12 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] rounded-2xl flex flex-col items-center justify-center gap-6 text-center">
-    <h2 class="text-4xl md:text-5xl font-bold text-black -tracking-tight">
+  <div class="cta-card w-full bg-pink border-4 border-black p-12 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] rounded-2xl flex flex-col items-center justify-center gap-6 text-center opacity-0">
+    <h2 class="cta-title text-4xl md:text-5xl font-bold text-black -tracking-tight opacity-0">
       Let's Create Something Bold
     </h2>
-    <p class="text-lg text-black/80 max-w-2xl leading-relaxed">
+    <p class="cta-text text-lg text-black/80 max-w-2xl leading-relaxed opacity-0">
       Interested in working together? I'd love to hear about your project and how we can collaborate.
     </p>
     <a
       href="/#contact"
-      class="font-global font-medium uppercase -tracking-tight text-sm sm:text-lg px-8 py-4 bg-green text-black border-[3px] border-black cursor-pointer shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] active:translate-x-0 active:translate-y-0 active:shadow-none"
+      class="cta-button font-global font-medium uppercase -tracking-tight text-sm sm:text-lg px-8 py-4 bg-green text-black border-[3px] border-black cursor-pointer shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] active:translate-x-0 active:translate-y-0 active:shadow-none opacity-0"
     >
       Get in Touch
     </a>
   </div>
 </section>
+
+<script>
+  import { animate, stagger } from 'animejs';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const card = document.querySelector('.cta-card');
+    const title = document.querySelector('.cta-title');
+    const text = document.querySelector('.cta-text');
+    const button = document.querySelector('.cta-button');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (card) {
+            animate(card, {
+              translateY: [50, 0],
+              opacity: [0, 1],
+              duration: 1000,
+              easing: 'out-expo'
+            });
+          }
+
+          if (title && text && button) {
+            animate([title, text, button], {
+              translateY: [20, 0],
+              opacity: [0, 1],
+              duration: 800,
+              delay: stagger(150, { start: 400 }),
+              easing: 'out-expo'
+            });
+          }
+
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.2 });
+
+    if (card) {
+      observer.observe(card);
+    }
+  });
+</script>

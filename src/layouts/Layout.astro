@@ -11,18 +11,21 @@ interface Props {
 	title?: string;
 	description?: string;
 	image?: string;
+	imageTwitter?: string;
 	type?: string;
 }
 
 const {
 	title = "Adrian Rangel - Full Stack Web Developer",
 	description = "Full-stack web developer with 2+ years of experience building scalable applications. Specializing in React, Next.js, TypeScript, Node.js, and modern web technologies.",
-	image = "/og-image.jpg",
+	image = "/og-1.webp",
+	imageTwitter = "/og-t.webp",
 	type = "website"
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImage = new URL(image, Astro.site);
+const socialImageTwitter = new URL(imageTwitter, Astro.site);
 ---
 
 <!doctype html>
@@ -53,12 +56,11 @@ const socialImage = new URL(image, Astro.site);
 		<meta name="twitter:url" content={canonicalURL} />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content={socialImage} />
+		<meta name="twitter:image" content={socialImageTwitter} />
 		<meta name="twitter:creator" content="@radriann21" />
 		
 		<!-- Favicon -->
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 		
 		<!-- Theme Color -->
