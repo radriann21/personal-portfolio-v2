@@ -5,20 +5,62 @@ import { professionalExperience } from '../../utils/professionalExperience'
 
 <section class="w-full py-12 px-16 border-b-4 border-border bg-pink">
   <div class="flex flex-col space-y-9">
-    <h2 class="font-bold text-4xl uppercase -tracking-wider text-black">Professional Experience</h2>
+    <h2 class="experience-title font-bold text-4xl uppercase -tracking-wider text-black opacity-0">Professional Experience</h2>
     <div class="flex flex-col gap-6">
       {professionalExperience.map((experience) => (
-        <ProfessionalCard
-          title={experience.title}
-          company={experience.company}
-          location={experience.location}
-          description={experience.description}
-          techs={experience.techs}
-          startDate={experience.startDate}
-          endDate={experience.endDate}
-          duration={experience.duration}
-        />
+        <div class="experience-card opacity-0">
+          <ProfessionalCard
+            title={experience.title}
+            company={experience.company}
+            location={experience.location}
+            description={experience.description}
+            techs={experience.techs}
+            startDate={experience.startDate}
+            endDate={experience.endDate}
+            duration={experience.duration}
+          />
+        </div>
       ))}
     </div>
   </div>
 </section>
+
+<script>
+  import { animate, stagger } from 'animejs';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const title = document.querySelector('.experience-title');
+    const cards = document.querySelectorAll('.experience-card');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (title) {
+            animate(title, {
+              translateX: [-100, 0],
+              opacity: [0, 1],
+              duration: 800,
+              easing: 'out-expo'
+            });
+          }
+
+          if (cards.length > 0) {
+            animate(cards, {
+              translateY: [50, 0],
+              opacity: [0, 1],
+              duration: 800,
+              delay: stagger(200),
+              easing: 'out-expo'
+            });
+          }
+
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.1 });
+
+    if (title) {
+      observer.observe(title);
+    }
+  });
+</script>

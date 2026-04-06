@@ -1,10 +1,10 @@
 ---
 title: "Readocs"
 description: "Lightweight browser-based Markdown editor with live preview and template system"
-image: "https://placehold.co/600x400/00FF85/00FF85"
+image: "/project-1.webp"
 tags: ["React", "TypeScript", "CodeMirror", "Zustand"]
 codeUrl: "https://github.com/radriann21/readocs"
-liveUrl: "https://readocs.vercel.app/"
+liveUrl: "https://readocs-bay.vercel.app/"
 featured: true
 publishDate: 2024-03-10
 ---

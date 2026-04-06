@@ -1,8 +1,36 @@
 <section class="w-full h-[340px] py-24 px-16 border-b-4 border-border bg-green">
-  <h2 class="font-bold text-4xl -tracking-wider mb-6 text-black">About Me</h2>
-  <p class="text-xl w-1/2 text-black">
+  <h2 class="about-hero-title font-bold text-4xl -tracking-wider mb-6 text-black">About Me</h2>
+  <p class="about-hero-text text-xl w-1/2 text-black">
     Web developer with 2+ years of experience building scalable applications.
     I turn ideas into high-performance digital products using modern
     technologies and best practices, powered by AI.
   </p>
 </section>
+
+<script>
+  import { animate } from 'animejs';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const title = document.querySelector('.about-hero-title');
+    const text = document.querySelector('.about-hero-text');
+
+    if (title) {
+      animate(title, {
+        translateY: [-50, 0],
+        opacity: [0, 1],
+        duration: 800,
+        easing: 'out-expo'
+      });
+    }
+
+    if (text) {
+      animate(text, {
+        translateY: [-30, 0],
+        opacity: [0, 1],
+        duration: 800,
+        delay: 200,
+        easing: 'out-expo'
+      });
+    }
+  });
+</script>

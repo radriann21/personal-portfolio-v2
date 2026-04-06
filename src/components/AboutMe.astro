@@ -1,7 +1,9 @@
 <section class="w-full py-12 px-16 border-b-4 border-border bg-orange">
   <div class="flex flex-col space-y-9">
     <div class="w-full flex items-center justify-between">
-      <h3 class="font-bold text-4xl uppercase -tracking-wider text-black">About Me</h3>
+      <h3 class="font-bold text-4xl uppercase -tracking-wider text-black">
+        About Me
+      </h3>
       <a
         href="/about"
         class="font-global font-medium uppercase -tracking-tight text-sm sm:text-lg px-3 py-1.5 sm:px-4 sm:py-2 bg-blue text-white border-[3px] border-black cursor-pointer shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] active:translate-x-0 active:translate-y-0 active:shadow-none"
@@ -13,7 +15,7 @@
         class="about-card bg-white border-4 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col gap-4"
       >
         <p class="text-base leading-relaxed font-mono">
-          I'm a web developer with 2+ years of experience building scalable
+          Web developer with 2+ years of experience building scalable
           applications. I specialize in creating fast, responsive web
           experiences using modern JavaScript frameworks and solid backend
           architecture.
@@ -22,6 +24,9 @@
           I focus on clean code, performance optimization, and user-centric
           design. Every line of code is written with maintainability and
           scalability in mind.
+        </p>
+        <p class="text-base leading-relaxed font-mono">
+          When I'm not coding, I enjoy exploring new technologies and enjoying art, music or games.
         </p>
       </div>
       <div class="flex flex-col gap-6">
@@ -32,12 +37,11 @@
             Tech Stack
           </h4>
           <p class="text-sm leading-relaxed">
-            <span class="font-bold">Frontend:</span> React, NextJS, TypeScript, TailwindCSS,
-            Vite, Svelte
+            <span class="font-bold">Frontend:</span> React, NextJS, TypeScript, Svelte
           </p>
           <p class="text-sm leading-relaxed">
-            <span class="font-bold">Backend:</span> NodeJS, ExpressJS, PostgreSQL,
-            NestJS
+            <span class="font-bold">Backend:</span> NodeJS, Express, NestJS, Prisma,
+            Sequelize, PostgreSQL
           </p>
           <p class="text-sm leading-relaxed">
             <span class="font-bold">Tools:</span> Git, GitHub, Docker, Vercel
@@ -60,25 +64,28 @@
 </section>
 
 <script>
-  import { animate, stagger } from 'animejs';
+  import { animate, stagger } from "animejs";
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const aboutCards = document.querySelectorAll('.about-card');
+  document.addEventListener("DOMContentLoaded", () => {
+    const aboutCards = document.querySelectorAll(".about-card");
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animate(aboutCards, {
-            translateY: [50, 0],
-            opacity: [0, 1],
-            duration: 800,
-            delay: stagger(200),
-            easing: 'out-cubic'
-          });
-          observer.disconnect();
-        }
-      });
-    }, { threshold: 0.2 });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animate(aboutCards, {
+              translateY: [50, 0],
+              opacity: [0, 1],
+              duration: 800,
+              delay: stagger(200),
+              easing: "out-cubic",
+            });
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.2 },
+    );
 
     if (aboutCards.length > 0) {
       observer.observe(aboutCards[0]);

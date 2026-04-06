@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 interface Props {
   slug?: string;
   title?: string;
@@ -12,15 +14,11 @@ interface Props {
 }
 
 const {
-  slug = "real-estate-platform",
-  title = "Real Estate Platform",
-  description = "Full-stack property listing platform with advanced filtering and virtual tours",
-  image = "https://placehold.co/600x400/ff7b9d/ff7b9d",
-  tags = ["Next.js", "PostgreSQL", "Mapbox", "Stripe"],
-  project = {
-    codeUrl: "https://github.com/",
-    liveUrl: "https://github.com/",
-  },
+  slug,
+  title,
+  description,
+  image = "https://placehold.co/600x400/4F46E5/4F46E5",
+  tags = [],
 } = Astro.props;
 ---
 
@@ -32,7 +30,7 @@ const {
     aria-label={`View ${title} project details`}
   >
     <div class="w-full h-[200px] border-b-4 border-black overflow-hidden">
-      <img
+      <Image
         src={image}
         height="200"
         width="600"

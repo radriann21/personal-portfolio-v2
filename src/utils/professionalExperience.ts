@@ -14,7 +14,7 @@ export const professionalExperience = [
     company: "Municipality of Miranda",
     location: "Trujillo State, Venezuela",
     description: "At the Municipality of Miranda, I collaborated on developing a key application for employee management. My work focused on improving the operational efficiency of the area, successfully reducing data processing and validation time by at least 10% through workflow optimization. From a technical standpoint, I was responsible for adjusting and redesigning interfaces, implementing robust CSS architectures like BEM and using Styled Components. This standardization not only modernized the design but also increased CSS code maintainability and facilitated the incorporation of future changes.",
-    techs: ["Frontend", "Astro", "CSS", "BEM", "Styled Components"],
+    techs: ["Frontend", "ReactJS", "CSS", "BEM", "Styled Components"],
     startDate: "Jan 2024",
     endDate: "Feb 2025",
     duration: "1 year 1 month"
