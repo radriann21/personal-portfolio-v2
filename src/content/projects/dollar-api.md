@@ -3,7 +3,7 @@ title: "Dollar API"
 description: "REST API for Venezuelan dollar exchange rates with real-time scraping and analytics"
 image: "/project-3.webp"
 tags: ["NestJS", "PostgreSQL", "Redis", "Prisma"]
-codeUrl: "https://github.com/radriann21/dollar-api-nest"
+codeUrl: "https://github.com/radriann21/nest-api-dollar"
 liveUrl: ""
 featured: true
 publishDate: 2024-02-20
